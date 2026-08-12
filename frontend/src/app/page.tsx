@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 async function getAgents(token: string | undefined) {
   try {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+    const apiUrl = (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://agentos-yxmp.onrender.com').replace(/\/$/, '');
     const res = await fetch(`${apiUrl}/api/agents`, { 
       cache: 'no-store',
       headers: { 'Authorization': `Bearer ${token}` }
@@ -23,7 +23,7 @@ async function getAgents(token: string | undefined) {
 
 async function getRuns(token: string | undefined) {
   try {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+    const apiUrl = (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://agentos-yxmp.onrender.com').replace(/\/$/, '');
     const res = await fetch(`${apiUrl}/api/runs`, { 
       cache: 'no-store',
       headers: { 'Authorization': `Bearer ${token}` }

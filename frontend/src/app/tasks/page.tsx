@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 
 async function getTasks() {
   try {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+    const apiUrl = (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://agentos-yxmp.onrender.com').replace(/\/$/, '');
     const token = (await cookies()).get('agentos_auth')?.value;
     
     const res = await fetch(`${apiUrl}/api/tasks`, { 

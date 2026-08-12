@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-const rawUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3001';
+const rawUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://agentos-yxmp.onrender.com';
 const backendUrl = rawUrl.replace(/\/$/, '');
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
