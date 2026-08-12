@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #121212;
+  --color-foreground: #ffffff;
+  
+  --color-primary: #14b8a6; /* Teal accent */
+  --color-primary-foreground: #000000;
+  
+  --color-card: #1e1e1e;
+  --color-card-foreground: #ffffff;
+  
+  --color-border: #2d2d2d;
+  --color-muted: #a1a1aa;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .app-container {
+    background-color: #070a10;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    width: 250px;
+    background-color: #070a10;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    background-color: #0b0f17;
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    color: var(--color-muted);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-item:hover {
+    color: #ffffff;
+  }
+
+  .nav-item.active {
+    background-color: #262626;
+    color: var(--color-primary);
+  }
+
+  .glass-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  
+  .primary-button {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .primary-button:hover {
+    background-color: #0d9488;
+    transform: translateY(-1px);
+  }
+
+  .secondary-button {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: 1px solid #3d3d3d;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .secondary-button:hover {
+    background-color: #3d3d3d;
+  }
+
+  .status-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .status-badge.active, .status-badge.pending {
+    background: rgba(20, 184, 166, 0.15);
+    color: var(--color-primary);
+  }
+  
+  .status-badge.idle {
+    background: rgba(161, 161, 170, 0.15);
+    color: var(--color-muted);
+  }
+}

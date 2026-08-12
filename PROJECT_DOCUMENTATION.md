@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# AgentOS
-=======
 <div align="center">
 
 # 🤖 AgentOS
@@ -180,4 +177,3 @@ docker compose up --build
 **Built for teams that need agents that actually ship.**
 
 </div>
->>>>>>> 72c46f1 (Initial commit - prepared for Render and Vercel deployment)
