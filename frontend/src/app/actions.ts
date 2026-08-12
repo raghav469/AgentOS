@@ -3,7 +3,10 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+function getApiUrl() {
+  const url = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3001';
+  return url.replace(/\/$/, '');
+}
 
 export async function loginAction(formData: FormData) {
   const email = formData.get('email') as string;
@@ -13,7 +16,7 @@ export async function loginAction(formData: FormData) {
     return { error: 'Email and password are required' };
   }
 
-  const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+  const apiUrl = getApiUrl();
 
   try {
     const res = await fetch(`${apiUrl}/api/users/login`, {
@@ -22,7 +25,8 @@ export async function loginAction(formData: FormData) {
       body: JSON.stringify({ email, password })
     });
     
-    const data = await res.json();
+    const contentType = res.headers.get('content-type');
+    const data = contentType && contentType.includes('application/json') ? await res.json() : {};
 
     if (res.ok && data.token) {
       (await cookies()).set('agentos_auth', data.token, { 
@@ -33,7 +37,7 @@ export async function loginAction(formData: FormData) {
       });
       return { success: true };
     } else {
-      return { error: data.error || 'Invalid credentials' };
+      return { error: data.error || (res.status === 404 ? 'Backend API URL not found. Check API_URL setting.' : 'Invalid credentials') };
     }
   } catch (err: any) {
     console.error('Login error:', err);
@@ -50,7 +54,7 @@ export async function registerAction(formData: FormData) {
     return { error: 'All fields are required' };
   }
 
-  const apiUrl = process.env.API_URL || 'http://127.0.0.1:3001';
+  const apiUrl = getApiUrl();
 
   try {
     const res = await fetch(`${apiUrl}/api/users/register`, {
@@ -59,7 +63,8 @@ export async function registerAction(formData: FormData) {
       body: JSON.stringify({ name, email, password })
     });
     
-    const data = await res.json();
+    const contentType = res.headers.get('content-type');
+    const data = contentType && contentType.includes('application/json') ? await res.json() : {};
 
     if (res.ok && data.token) {
       (await cookies()).set('agentos_auth', data.token, { 
@@ -70,7 +75,7 @@ export async function registerAction(formData: FormData) {
       });
       return { success: true };
     } else {
-      return { error: data.error || 'Registration failed' };
+      return { error: data.error || (res.status === 404 ? 'Backend API URL not found. Ensure API_URL is set in Vercel settings.' : 'Registration failed') };
     }
   } catch (err: any) {
     console.error('Registration error:', err);
