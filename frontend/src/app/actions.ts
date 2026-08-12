@@ -94,6 +94,7 @@ export async function createCheckoutSessionAction() {
   const token = (await cookies()).get('agentos_auth')?.value;
   if (!token) redirect('/login');
 
+  const apiUrl = getApiUrl();
   const res = await fetch(`${apiUrl}/api/billing/checkout`, {
     method: 'POST',
     headers: {
@@ -120,6 +121,7 @@ export async function updateSettingsAction(formData: FormData) {
   const gemini_api_key = formData.get('gemini_api_key') as string;
   const openai_api_key = formData.get('openai_api_key') as string;
 
+  const apiUrl = getApiUrl();
   try {
     const res = await fetch(`${apiUrl}/api/users/keys`, {
       method: 'PUT',
