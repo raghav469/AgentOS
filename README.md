@@ -120,29 +120,6 @@ Step-by-step progress, token usage, latency, and cost stream live to the UI (`sr
 
 ---
 
-## 🚀 Quick Start
-
-### Option A — Local Development
-
-```bash
-# 1. Start the Fastify backend (http://localhost:3001)
-npm run dev
-
-# 2. Start the Next.js frontend (http://localhost:3000)
-cd frontend
-npm run dev
-```
-
-### Option B — Dockerized Cluster (Production)
-
-Spin up the full stack — Postgres, Redis, API, Worker, and Frontend — with one command:
-
-```bash
-docker compose up --build
-```
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -168,4 +145,3 @@ docker compose up --build
 **Built for teams that need agents that actually ship.**
 
 </div>
->>>>>>> 72c46f1 (Initial commit - prepared for Render and Vercel deployment)
