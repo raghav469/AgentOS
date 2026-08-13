@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AgentOS
 =======
 <div align="center">
@@ -163,17 +162,6 @@ docker compose up --build
 ├── migrations/                # DB migrations (node-pg-migrate)
 └── docker-compose.yml         # Multi-container orchestration
 ```
-
----
-
-## 🧭 Roadmap
-
-- [ ] Agent marketplace / template gallery
-- [ ] Fine-grained tool permissions per agent
-- [ ] Usage-based billing dashboard
-- [ ] Slack / Discord agent triggers
-
----
 
 <div align="center">
 
